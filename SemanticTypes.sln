@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Web
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticTypes", "SemanticTypes\SemanticTypes.csproj", "{A036BBF1-9CB8-43EF-AE5A-BA03379F6895}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticTypes.Test", "SemanticTypes.Test\SemanticTypes.Test.csproj", "{A808B45A-1E25-4923-A5A4-91D6CCC0925E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A036BBF1-9CB8-43EF-AE5A-BA03379F6895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A036BBF1-9CB8-43EF-AE5A-BA03379F6895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A036BBF1-9CB8-43EF-AE5A-BA03379F6895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A036BBF1-9CB8-43EF-AE5A-BA03379F6895}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A808B45A-1E25-4923-A5A4-91D6CCC0925E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A808B45A-1E25-4923-A5A4-91D6CCC0925E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A808B45A-1E25-4923-A5A4-91D6CCC0925E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A808B45A-1E25-4923-A5A4-91D6CCC0925E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
