@@ -17,8 +17,6 @@ namespace SemanticTypes
         public T Value { get; private set; }
         public Q QualifyingValue { get; private set; }
 
-        public static string InvalidMessage { get; protected set; }
-
         private static Func<T, bool> _isValid = v => true;
         public static Func<T, bool> IsValid 
         { 
@@ -37,7 +35,7 @@ namespace SemanticTypes
         {
             if (!IsValid(value))
             {
-                throw new ArgumentException(InvalidMessage + " - Value: " + value);
+                throw new ArgumentException(string.Format("Trying to set a {0} to {1} which is invalid", typeof(T), value));
             }
 
             Value = value;

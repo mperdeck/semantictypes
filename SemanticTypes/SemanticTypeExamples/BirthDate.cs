@@ -11,21 +11,17 @@ namespace SemanticTypes.SemanticTypeExamples
         // Oldest person ever died at 122 year and 164 days
         // http://en.wikipedia.org/wiki/List_of_the_verified_oldest_people
         // To be safe, reject any age over 130 years.
-        //
-        // Note that validation info must be set in the static constructor, so other code
-        // can call the static BirthDate.IsValid method to check if a given DateTime is a valid
-        // birth date.
+        const int maxAgeForHumans = 130;
+        const int daysPerYear = 365;
+
         static BirthDate()
         {
-            IsValid = v => {
-                        TimeSpan age = DateTime.Now - v;
-                        return (age.TotalDays >= 0) && (age.TotalDays < 365 * 130);
+            IsValid = birthDate => {
+                        TimeSpan age = DateTime.Now - birthDate;
+                        return (age.TotalDays >= 0) && (age.TotalDays < daysPerYear * maxAgeForHumans);
                     };
         }
 
-        public BirthDate(DateTime birthDate)
-            : base(birthDate)
-        {
-        }
+        public BirthDate(DateTime birthDate) : base(birthDate) { }
     }
 }

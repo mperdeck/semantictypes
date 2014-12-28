@@ -45,6 +45,7 @@
     <Compile Include="MetricTypeSystem\PhysicalUnit.cs" />
     <Compile Include="SemanticDoubleType.cs" />
     <Compile Include="SemanticDecimalTypeQualifiedByValue.cs" />
+    <Compile Include="SemanticTypeExamples\EmailAddress.cs" />
     <Compile Include="SemanticTypeQualifiedByValue.cs" />
     <Compile Include="SemanticTypeExamples\BirthDate.cs" />
     <Compile Include="SemanticTypeExamples\NonNullable.cs" />
