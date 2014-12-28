@@ -15,7 +15,6 @@ namespace SemanticTypes.SemanticTypeExamples
 
         static NonNullable()
         {
-            InvalidMessage = "Value cannot be null.";
             IsValid = v => v != null;
         }
 

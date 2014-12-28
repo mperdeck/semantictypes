@@ -17,7 +17,6 @@ namespace SemanticTypes.SemanticTypeExamples
         // birth date.
         static BirthDate()
         {
-            InvalidMessage = "Birth date must be in the past and less than 130 years ago.";
             IsValid = v => {
                         TimeSpan age = DateTime.Now - v;
                         return (age.TotalDays >= 0) && (age.TotalDays < 365 * 130);

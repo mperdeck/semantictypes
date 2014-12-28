@@ -11,7 +11,6 @@ namespace SemanticTypes.MetricTypeSystem
     {
         static PhysicalUnit()
         {
-            InvalidMessage = "PhysicalUnit must be 0 or greater.";
             IsValid = v => v >= 0;
         }
 

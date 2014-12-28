@@ -15,14 +15,13 @@ namespace SemanticTypes
     {
         public T Value { get; private set; }
 
-        public static string InvalidMessage { get; protected set; }
         public static Func<T, bool> IsValid { get; protected set; }
 
         protected SemanticType(T value)
         {
             if (!IsValid(value))
             {
-                throw new ArgumentException(InvalidMessage + " - Value: " + value);
+                throw new ArgumentException(string.Format("Trying to set a {0} to {1} which is invalid", typeof(T), value));
             }
 
             Value = value;

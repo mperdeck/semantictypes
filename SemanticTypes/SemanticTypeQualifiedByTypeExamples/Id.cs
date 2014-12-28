@@ -10,7 +10,6 @@ namespace SemanticTypes.SemanticTypeQualifiedByTypeExamples
     {
         static Id()
         {
-            InvalidMessage = "Id must be greater than 0.";
             IsValid = v => v > 0;
         }
 
