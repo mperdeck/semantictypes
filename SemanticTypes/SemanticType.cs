@@ -109,8 +109,7 @@ namespace SemanticTypes
 
             // If one is null, but not both, return false.
             // Have to cast to object, otherwise you recursively call this == operator.
-            //if (EitherNull(a, b))  #######################
-            if (((object)a == null) || ((object)b == null))
+            if (EitherNull(a, b)) 
             {
                 return false;
             }

@@ -56,6 +56,10 @@
     <Compile Include="AmountTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SemanticTypes.Examples\SemanticTypes.Examples.csproj">
+      <Project>{c66b0b41-fcc8-40dd-9f36-c3f15777023a}</Project>
+      <Name>SemanticTypes.Examples</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SemanticTypes\SemanticTypes.csproj">
       <Project>{a036bbf1-9cb8-43ef-ae5a-ba03379f6895}</Project>
       <Name>SemanticTypes</Name>
