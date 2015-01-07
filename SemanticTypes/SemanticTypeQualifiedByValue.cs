@@ -56,7 +56,7 @@ namespace SemanticTypes
 
         public override int GetHashCode()
         {
-            return Value.GetHashCode();
+            return Value.GetHashCode() + QualifyingValue.GetHashCode();
         }
 
         public bool Equals(S other)
