@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using SemanticTypes;
 
 namespace SemanticTypes.MetricTypeSystem
 {
-    public class PhysicalUnit: SemanticDoubleType
+    public class PhysicalUnit : SemanticDoubleType<PhysicalUnit>
     {
-        static PhysicalUnit()
+        public static bool IsValid(double value)
         {
-            IsValid = v => v >= 0;
+            return (value >= 0);
         }
 
-        public PhysicalUnit(double value) : base(value) { }
+        public PhysicalUnit(double value) : base(IsValid, typeof(PhysicalUnit), value) { }
     }
 }

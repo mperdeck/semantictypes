@@ -2,15 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SemanticTypes
 {
-    public interface IHasValue<T>
-    {
-        T Value { get; }
-    }
-
     /// <summary>
     /// Base type of a semantic type.
     /// </summary>
@@ -18,10 +12,7 @@ namespace SemanticTypes
     /// Type of the underlying value. If your semantic type is "EmailAddress" with an underlying value of type string,
     /// then pass "string" here.
     /// </typeparam>
-    /// <typeparam name="S">
-    /// The semantic type itself.  If your semantic type is "EmailAddress", then pass "EmailAddress" here.
-    /// </typeparam>
-    public class SemanticType<T, S> : IHasValue<T>, IEquatable<S> where S : IHasValue<T>
+    public abstract class SemanticType<T> : IEquatable<SemanticType<T>>, IComparable, IComparable<SemanticType<T>>
     {
         /// <summary>
         /// The Value property allows you to get the underlying value of a semantic type
@@ -40,37 +31,16 @@ namespace SemanticTypes
         /// </example>
         public T Value { get; private set; }
 
-        /// <summary>
-        /// IsValid is a method. It returns true if the passed in value is valid
-        /// for use with this semantic type.
-        /// 
-        /// By making this a static property, it can be set in the static
-        /// constructor of a class that inherits from SemanticType.
-        /// Note that by default, it always returns true.
-        /// </summary>
-        /// <example>
-        /// <![CDATA[
-        /// public class EmailAddress : SemanticType<string, EmailAddress>
-        /// {
-        ///    ...
-        /// }
-        /// 
-        /// bool isValidEmailAddress = EmailAddress.IsValid("kjones@megacorp.com"); // true
-        /// bool isValidEmailAddress2 = EmailAddress.IsValid("not a valid email address"); // false
-        /// ]]>
-        /// </example>
-        private static Func<T, bool> _isValid = v => true;
-        public static Func<T, bool> IsValid
+        protected SemanticType(Func<T, bool> isValidLambda, Type derivedType, T value)
         {
-            get { return _isValid; }
-            protected set { _isValid = value; }
-        }
-
-        protected SemanticType(T value)
-        {
-            if (!IsValid(value))
+            if ((Object)value == null)
             {
-                throw new ArgumentException(string.Format("Trying to set a {0} to {1} which is invalid", typeof(T), value));
+                throw new ArgumentException(string.Format("Trying to use null as the value of a {0}", derivedType));
+            }
+
+            if ((isValidLambda != null) && !isValidLambda(value))
+            {
+                throw new ArgumentException(string.Format("Trying to set a {0} to {1} which is invalid", derivedType, value));
             }
 
             Value = value;
@@ -79,12 +49,12 @@ namespace SemanticTypes
         public override bool Equals(Object obj)
         {
             //Check for null and compare run-time types. 
-            if ((obj == null) || (!(obj is S)))
+            if (obj == null || obj.GetType() != this.GetType())
             {
                 return false;
             }
 
-            return (Value.Equals(((S)obj).Value));
+            return (Value.Equals(((SemanticType<T>)obj).Value));
         }
 
         public override int GetHashCode()
@@ -92,14 +62,14 @@ namespace SemanticTypes
             return Value.GetHashCode();
         }
 
-        public bool Equals(S other)
+        public bool Equals(SemanticType<T> other)
         {
             if (other == null) { return false; }
             
             return (Value.Equals(other.Value));
         }
 
-        public static bool operator ==(SemanticType<T, S> a, SemanticType<T, S> b)
+        public static bool operator ==(SemanticType<T> a, SemanticType<T> b)
         {
             // If both are null, or both are same instance, return true.
             if (System.Object.ReferenceEquals(a, b))
@@ -118,12 +88,12 @@ namespace SemanticTypes
             return a.Equals(b);
         }
 
-        public static bool operator !=(SemanticType<T, S> a, SemanticType<T, S> b)
+        public static bool operator !=(SemanticType<T> a, SemanticType<T> b)
         {
             return !(a == b);
         }
 
-        protected static bool EitherNull(SemanticType<T, S> a, SemanticType<T, S> b)
+        protected static bool EitherNull(SemanticType<T> a, SemanticType<T> b)
         {
             if (((object)a == null) || ((object)b == null))
             {
@@ -131,6 +101,43 @@ namespace SemanticTypes
             }
 
             return false;
+        }
+        int IComparable<SemanticType<T>>.CompareTo(SemanticType<T> other)
+        {
+            return ((IComparable)this).CompareTo(other);
+        }
+
+        int IComparable.CompareTo(object obj)
+        {
+            if (obj == null || obj.GetType() != this.GetType())
+            {
+                throw new ArgumentException(String.Format("other must be of type {0}", this.GetType()));
+            }
+            if (this.Equals(obj))
+            {
+                return 0;
+            }
+            else
+            {
+                SemanticType<T> other = (SemanticType<T>)obj;
+                if (typeof(IComparable<T>).IsAssignableFrom(typeof(T)))
+                {
+                    return ((IComparable<T>)this.Value).CompareTo(other.Value);
+                }
+                else if (typeof(IComparable).IsAssignableFrom(typeof(IComparable)))
+                {
+                    return ((IComparable)this.Value).CompareTo(other.Value);
+                }
+                else
+                {
+                    throw new InvalidOperationException(string.Format("Neither IComparable<T> nor IComparable is implemented for {0}", typeof(T)));
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            return this.Value.ToString();
         }
     }
 }

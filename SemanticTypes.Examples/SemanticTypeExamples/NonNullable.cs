@@ -2,24 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SemanticTypes.SemanticTypeExamples
 {
-    public class NonNullable<T> : SemanticType<T, NonNullable<T>>
+    public class NonNullable<T> : SemanticType<T>
     {
         public static implicit operator T(NonNullable<T> t) { return t.Value; }
 
         // force dev to know that we're going to NonNullable
         public static explicit operator NonNullable<T>(T t) { return new NonNullable<T>(t); }
 
-        static NonNullable()
+        public static bool IsValid(T value)
         {
-            IsValid = v => v != null;
+            return (value != null);
         }
 
         public NonNullable(T value)
-            : base(value)
+            : base(IsValid, typeof(NonNullable<T>), value)
         {
         }
     }

@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>SemanticTypes.TypeSystem.Physics</id>
-    <version>0.8.0</version>
+    <version>0.9.0</version>
     <title>SemanticTypes.TypeSystem.Physics - semantic classes that model the physical world</title>
     <authors>Matt Perdeck</authors>
     <owners>Matt Perdeck</owners>
     <projectUrl>https://github.com/mperdeck/semantictypes</projectUrl>
       <iconUrl>http://nuget.org/Media/Default/Packages/LinqToCsv/1.0.0.0/logo.jpg</iconUrl>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Physics related type system that models the physical world, including distances, areas, etc. Includes strongly typed operators, so that multiplying two distances results in an aread, etc.</description>
+    <description>Physics related type system that models the physical world, including distances, areas, etc. Includes strongly typed operators, so that multiplying two distances results in an area, etc.</description>
     <copyright>Copyright 2014</copyright>
     <tags>ddd value types semantic types physics</tags>
       <dependencies>

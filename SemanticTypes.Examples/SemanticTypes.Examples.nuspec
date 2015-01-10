@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SemanticTypes.Examples</id>
-    <version>0.8.0</version>
+    <version>0.9.0</version>
     <title>SemanticTypes.Examples - examples of semantic classes</title>
     <authors>Matt Perdeck</authors>
     <owners>Matt Perdeck</owners>

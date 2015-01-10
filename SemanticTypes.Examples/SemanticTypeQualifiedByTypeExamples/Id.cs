@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SemanticTypes.SemanticTypeQualifiedByTypeExamples
 {
-    public class Id<Q> : SemanticType<int, Id<Q>>
+    public class Id<Q> : SemanticType<int>
     {
-        static Id()
+        public static bool IsValid(int value)
         {
-            IsValid = v => v > 0;
+            return (value >= 0);
         }
 
         public Id(int id)
-            : base(id)
+            : base(IsValid, typeof(Id<Q>), id)
         {
         }
     }
