@@ -3,6 +3,29 @@ Semantic Types
 
 Semantic Types help you reduce bugs and improve maintainability by letting the compiler ensure consistency in your code.
 
+For example, instead of using a string everywhere to hold a email address, you create a new semantic type EmailAddress:
+```csharp
+string emailAddressStr = ... ;
+EmailAddress emailAddress = new EmailAddress(EmailAddressDT);
+```
+
+The EmailAddress constructor ensures that the passed in value is a valid email address. If it is not valid, it throws an exception, so it fails hard and early.
+
+Then where ever you use an email address, you use a EmailAddress, not a string. That gives you:
+ 
+* **Type based on meaning, not on physical storage**: An EmailAddress is physically still a string. What makes it different is the way we think of that string - as an email address, not as a random collection of characters.
+* **Type safe**: Having a distinct EmailAddress type enables the compiler to ensure you're not using some common string where a valid email address is expected - just as the compiler stops you from using a string where an integer is expected.
+* **Guaranteed to be valid**: Because you can't create an EmailAddress based on an invalid email address, and you can't change it after it has been created, you know for sure that every EmaillAddress represents a valid email address.
+* **Documentation**: When you see a parameter of type EmailAddress, you know right away it contain an email address, even if the parameter name is unclear. 
+ 
+Documentation
+============
+[Introducing Semantic Types in .Net](http://www.codeproject.com/Articles/860646/Introducing-Semantic-Types-in-Net)
+
+
+Installation
+============
+
 Install via NuGet:
 
 ```PM> Install-Package SemanticTypes```
@@ -13,42 +36,27 @@ Example
 Here is an example implementation of a Semantic type:
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SemanticTypes.SemanticTypeExamples
+public class EmailAddress : SemanticType<string>
 {
-    public class BirthDate : SemanticType<DateTime, BirthDate>
-    {
-        // Oldest person ever died at 122 year and 164 days
-        // http://en.wikipedia.org/wiki/List_of_the_verified_oldest_people
-        // To be safe, reject any age over 130 years.
-        const int maxAgeForHumans = 130;
-        const int daysPerYear = 365;
+	public static bool IsValid(string value)
+	{
+		return (Regex.IsMatch(value,
+						@"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+						@"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
+						RegexOptions.IgnoreCase));
+	}
 
-        static BirthDate()
-        {
-          IsValid = birthDate => {
-            TimeSpan age = DateTime.Now - birthDate;
-            return (age.TotalDays >= 0) && (age.TotalDays < daysPerYear * maxAgeForHumans);
-          };
-        }
-
-        public BirthDate(DateTime birthDate) : base(birthDate) { }
-    }
+	public EmailAddress(string emailAddress) : base(IsValid, typeof(EmailAddress), emailAddress) { }
 }
 ```
 
 And here is how you might use it:
 
 ```csharp
-var validBirthDate = DateTime.Now - new TimeSpan(30 * 365, 0, 0, 0); // 30 years ago
-var isValid = BirthDate.IsValid(validBirthDate); // True
+bool isValid = EmailAddress.IsValid("test@corp.com"); // True
+EmailAddress EmailAddress = new EmailAddress("test@corp.com"); // Ok
 
-var invalidBirthDate = DateTime.Now - new TimeSpan(130 * 365, 0, 0, 0); // 130 years ago
-var isValid = BirthDate.IsValid(invalidBirthDate); // False
+bool isValid = EmailAddress.IsValid("not a valid email address"); // False
+EmailAddress EmailAddress = new EmailAddress("not a valid email address"); // Throws exception
 ```
 
