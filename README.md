@@ -5,8 +5,8 @@ Semantic Types help you reduce bugs and improve maintainability by letting the c
 
 For example, instead of using a string everywhere to hold a email address, you create a new semantic type EmailAddress:
 ```csharp
-string emailAddressStr = ... ;
-EmailAddress emailAddress = new EmailAddress(EmailAddressDT);
+string emailAddressFromUser = ... ;
+EmailAddress emailAddress = new EmailAddress(emailAddressFromUser);
 ```
 
 The EmailAddress constructor ensures that the passed in value is a valid email address. If it is not valid, it throws an exception, so it fails hard and early.
@@ -33,7 +33,7 @@ Install via NuGet:
 Example
 =======
 
-Here is an example implementation of a Semantic type:
+Here is an example implementation of a Semantic type. Note that almost all the functionality is in the SemanticType base class. This implements Equals, IComparable, the == operator and more:
 
 ```csharp
 public class EmailAddress : SemanticType<string>
@@ -54,9 +54,9 @@ And here is how you might use it:
 
 ```csharp
 bool isValid = EmailAddress.IsValid("test@corp.com"); // True
-EmailAddress EmailAddress = new EmailAddress("test@corp.com"); // Ok
+EmailAddress emailAddress = new EmailAddress("test@corp.com"); // Ok
 
 bool isValid = EmailAddress.IsValid("not a valid email address"); // False
-EmailAddress EmailAddress = new EmailAddress("not a valid email address"); // Throws exception
+EmailAddress emailAddress = new EmailAddress("not a valid email address"); // Throws exception
 ```
 
