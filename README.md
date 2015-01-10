@@ -33,7 +33,7 @@ Install via NuGet:
 Example
 =======
 
-Here is an example implementation of a Semantic type. Note that almost all the functionality is in the SemanticType base class. This implements Equals, IComparable, the == operator and more:
+Here is an example implementation of a Semantic type. Note that almost all the functionality is in the SemanticType base class. This implements Equals, IComparable, the == operator, ToString and more:
 
 ```csharp
 public class EmailAddress : SemanticType<string>
