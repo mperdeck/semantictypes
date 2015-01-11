@@ -13,6 +13,6 @@ namespace SemanticTypes.MetricTypeSystem
             return (value >= 0);
         }
 
-        public PhysicalUnit(double value) : base(IsValid, typeof(PhysicalUnit), value) { }
+        public PhysicalUnit(double value) : base(IsValid, value) { }
     }
 }

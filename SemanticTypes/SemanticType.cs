@@ -31,16 +31,16 @@ namespace SemanticTypes
         /// </example>
         public T Value { get; private set; }
 
-        protected SemanticType(Func<T, bool> isValidLambda, Type derivedType, T value)
+        protected SemanticType(Func<T, bool> isValidLambda, T value)
         {
             if ((Object)value == null)
             {
-                throw new ArgumentException(string.Format("Trying to use null as the value of a {0}", derivedType));
+                throw new ArgumentException(string.Format("Trying to use null as the value of a {0}", this.GetType()));
             }
 
             if ((isValidLambda != null) && !isValidLambda(value))
             {
-                throw new ArgumentException(string.Format("Trying to set a {0} to {1} which is invalid", derivedType, value));
+                throw new ArgumentException(string.Format("Trying to set a {0} to {1} which is invalid", this.GetType(), value));
             }
 
             Value = value;

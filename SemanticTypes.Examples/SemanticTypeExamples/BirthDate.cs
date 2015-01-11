@@ -17,7 +17,7 @@ namespace SemanticTypes.SemanticTypeExamples
             return (age.TotalDays >= 0) && (age.TotalDays < daysPerYear * maxAgeForHumans);
         }
 
-        public BirthDate(DateTime birthDate) : base(IsValid, typeof(BirthDate), birthDate) { }
+        public BirthDate(DateTime birthDate) : base(IsValid, birthDate) { }
 
         public static explicit operator DateTime(BirthDate value)
         {

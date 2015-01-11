@@ -13,7 +13,7 @@ namespace SemanticTypes.SemanticTypeQualifiedByTypeExamples
         }
 
         public Id(int id)
-            : base(IsValid, typeof(Id<Q>), id)
+            : base(IsValid, id)
         {
         }
     }

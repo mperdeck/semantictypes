@@ -18,7 +18,7 @@ namespace SemanticTypes.SemanticTypeExamples
 
         // Constructor, taking an email address. The base constructor handles validation
         // and storage in the Value property.
-        public EmailAddress(string emailAddress) : base(IsValid, typeof(EmailAddress), emailAddress) { }
+        public EmailAddress(string emailAddress) : base(IsValid, emailAddress) { }
 
         public static explicit operator string(EmailAddress value)
         {

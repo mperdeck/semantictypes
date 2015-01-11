@@ -18,7 +18,7 @@ namespace SemanticTypes.SemanticTypeExamples
         }
 
         public NonNullable(T value)
-            : base(IsValid, typeof(NonNullable<T>), value)
+            : base(IsValid, value)
         {
         }
     }
