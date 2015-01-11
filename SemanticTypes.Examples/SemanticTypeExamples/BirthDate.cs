@@ -19,10 +19,15 @@ namespace SemanticTypes.SemanticTypeExamples
 
         public BirthDate(DateTime birthDate) : base(IsValid, typeof(BirthDate), birthDate) { }
 
-        public static implicit operator DateTime(BirthDate t) { return t.Value; }
+        public static explicit operator DateTime(BirthDate value)
+        {
+            return value.Value;
+        }
 
-        // force dev to know that we're going to NonNullable
-        public static explicit operator BirthDate(DateTime t) { return new BirthDate(t); }
+        public static implicit operator BirthDate(DateTime value)
+        {
+            return new BirthDate(value);
+        }
 
     }
 }

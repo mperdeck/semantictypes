@@ -30,5 +30,35 @@ namespace SemanticTypes.Test
             var emailAddress = new EmailAddress("test12@test.com.au");
             Assert.AreEqual("test12@test.com.au", emailAddress.Value);
         }
+
+        [TestMethod]
+        public void Test_Implicit()
+        {
+            EmailAddress emailAddress = "example@contoso.com";
+            Assert.AreEqual("example@contoso.com", emailAddress.Value);
+        }
+
+        [TestMethod]
+        public void Test_Explicit()
+        {
+            EmailAddress emailAddress = new EmailAddress("example@contoso.com");
+
+            string sAddress = (string)emailAddress;
+            Assert.AreEqual("example@contoso.com", sAddress);
+        }
+
+        [TestMethod]
+        public void SetToNull()
+        {
+            EmailAddress emailAddress = null;
+            Assert.AreEqual(emailAddress, null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(System.ArgumentException))]
+        public void SetToInvalidImplicit_Exception()
+        {
+            EmailAddress emailAddress = "Invalid email address";
+        }
     }
 }
