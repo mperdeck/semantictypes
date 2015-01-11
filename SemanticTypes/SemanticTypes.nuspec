@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SemanticTypes</id>
-    <version>0.9.0</version>
+    <version>0.9.1</version>
     <title>SemanticTypes - base classes to quickly create semantic types for your domain</title>
     <authors>Matt Perdeck</authors>
     <owners>Matt Perdeck</owners>
