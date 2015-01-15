@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SemanticTypes.SemanticTypeExamples
 {
-    public class NonNullable<T> : SemanticType<T>
+    public class NonNullable<T> : UncomparableSemanticType<T>
     {
         public static implicit operator T(NonNullable<T> t) { return t.Value; }
 
