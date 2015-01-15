@@ -102,12 +102,13 @@ namespace SemanticTypes
 
             return false;
         }
-        int IComparable<SemanticType<T>>.CompareTo(SemanticType<T> other)
+
+        public int CompareTo(SemanticType<T> other)
         {
             return ((IComparable)this).CompareTo(other);
         }
 
-        int IComparable.CompareTo(object obj)
+        public int CompareTo(object obj)
         {
             if (obj == null || obj.GetType() != this.GetType())
             {
@@ -124,7 +125,7 @@ namespace SemanticTypes
                 {
                     return ((IComparable<T>)this.Value).CompareTo(other.Value);
                 }
-                else if (typeof(IComparable).IsAssignableFrom(typeof(IComparable)))
+                else if (typeof(IComparable).IsAssignableFrom(typeof(T)))
                 {
                     return ((IComparable)this.Value).CompareTo(other.Value);
                 }
