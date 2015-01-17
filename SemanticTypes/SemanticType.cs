@@ -26,16 +26,7 @@ namespace SemanticTypes
 
         public int CompareTo(SemanticType<T> other)
         {
-            if ((Object)other == null)
-            {
-                return 1;
-            }
-
-            if (this.Equals(other))
-            {
-                return 0;
-            }
-
+            if (other == null) { return 1; }
             return (this.Value).CompareTo(other.Value);
         }
     }
