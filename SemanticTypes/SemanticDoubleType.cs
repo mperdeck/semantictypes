@@ -12,6 +12,7 @@ namespace SemanticTypes
     /// </summary>
     /// <typeparam name="Q"></typeparam>
     public class SemanticDoubleType<Q> : SemanticType<double>
+        where Q: class
     {
         public SemanticDoubleType(double value)
             : base(null, value)
@@ -23,22 +24,9 @@ namespace SemanticTypes
 
         public static Q operator +(SemanticDoubleType<Q> b, SemanticDoubleType<Q> c)
         {
-          //  if (EitherNull(b, c)) { return null; }
-
-            double x = b.Value + c.Value;
-            object[] args = { x };
-            object result = Activator.CreateInstance(typeof(Q), args);
-            return (Q)result;
-
-
-        //    return new Q(_isValidLambda, b.Value + c.Value);
+            if (EitherNull(b, c)) { return null; }
+            return CreateQ(b.Value + c.Value);
         }
-
-        //public static SemanticDoubleType<Q> operator +(SemanticDoubleType<Q> b, SemanticDoubleType<Q> c)
-        //{
-        //    if (EitherNull(b, c)) { return null; }
-        //    return new SemanticDoubleType<Q>(_isValidLambda, b.Value + c.Value);
-        //}
 
         public static SemanticDoubleType<Q> operator -(SemanticDoubleType<Q> b, SemanticDoubleType<Q> c)
         {
@@ -98,6 +86,13 @@ namespace SemanticTypes
         {
             if (EitherNull(b, c)) { return false; }
             return (b.Value >= c.Value);
+        }
+
+        private static Q CreateQ(double value)
+        {
+            object[] args = { value };
+            object result = Activator.CreateInstance(typeof(Q), args);
+            return (Q)result;
         }
     }
 }
