@@ -13,19 +13,10 @@ namespace SemanticTypes
     /// <typeparam name="Q"></typeparam>
     public class SemanticDoubleType<Q> : SemanticType<double>
     {
-        private static Func<double, bool> _isValidLambda = null;
-
-        public SemanticDoubleType(Func<double, bool> isValidLambda, double value)
-            : base(isValidLambda, value)
+        public SemanticDoubleType(double value)
+            : base(null, value)
         {
-            _isValidLambda = isValidLambda;
         }
-
-        //public static implicit operator Q(SemanticDoubleType<Q> d)
-        //{
-        //    return new Digit(d);
-        //}
-
 
         // -----------------------------------------------------------------
         // Binary operator 
@@ -52,25 +43,25 @@ namespace SemanticTypes
         public static SemanticDoubleType<Q> operator -(SemanticDoubleType<Q> b, SemanticDoubleType<Q> c)
         {
             if (EitherNull(b, c)) { return null; }
-            return new SemanticDoubleType<Q>(_isValidLambda, b.Value - c.Value);
+            return new SemanticDoubleType<Q>(b.Value - c.Value);
         }
 
         public static SemanticDoubleType<Q> operator *(double b, SemanticDoubleType<Q> c)
         {
             if (c == null) { return null; }
-            return new SemanticDoubleType<Q>(_isValidLambda, b * c.Value);
+            return new SemanticDoubleType<Q>(b * c.Value);
         }
 
         public static SemanticDoubleType<Q> operator *(SemanticDoubleType<Q> c, double b)
         {
             if (c == null) { return null; }
-            return new SemanticDoubleType<Q>(_isValidLambda, b * c.Value);
+            return new SemanticDoubleType<Q>(b * c.Value);
         }
 
         public static SemanticDoubleType<Q> operator /(SemanticDoubleType<Q> c, double b)
         {
             if (c == null) { return null; }
-            return new SemanticDoubleType<Q>(_isValidLambda, c.Value / b);
+            return new SemanticDoubleType<Q>(c.Value / b);
         }
 
         // -----------------------------------------------------------------
@@ -79,7 +70,7 @@ namespace SemanticTypes
         public static SemanticDoubleType<Q> operator -(SemanticDoubleType<Q> c)
         {
             if (c == null) { return null; }
-            return new SemanticDoubleType<Q>(_isValidLambda, -1 * c.Value);
+            return new SemanticDoubleType<Q>(-1 * c.Value);
         }
 
         // -----------------------------------------------------------------

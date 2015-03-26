@@ -11,7 +11,6 @@ namespace SemanticTypes.MetricTypeSystem
     /// http://www.convert-me.com/en/
     /// </summary>
     public class Distance : SemanticDoubleType<Distance>
-//##############    public class Distance : PhysicalUnit<Distance>
     {
         /// <summary>
         /// Creates a new distance
@@ -19,12 +18,7 @@ namespace SemanticTypes.MetricTypeSystem
         /// <param name="value">
         /// Distance in meters
         /// </param>
-        public Distance(double value) : base(null, value) { }
-
-        //public static implicit operator Distance(IValue<double> d)
-        //{
-        //    return new Distance(d.Value);
-        //}
+        public Distance(double value) : base(value) { }
 
         private const double MilesToMeters = 1609;
         private const double FeetToMeters = 0.3048;

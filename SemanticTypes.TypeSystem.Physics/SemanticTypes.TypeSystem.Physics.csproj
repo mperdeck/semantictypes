@@ -41,7 +41,6 @@
   <ItemGroup>
     <Compile Include="Area.cs" />
     <Compile Include="Distance.cs" />
-    <Compile Include="PhysicalUnit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Volume.cs" />
   </ItemGroup>
