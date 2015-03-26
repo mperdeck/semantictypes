@@ -8,7 +8,7 @@ namespace SemanticTypes.MetricTypeSystem
     /// <summary>
     /// Volume in cubic meters 
     /// </summary>
-    public class Volume: PhysicalUnit
+    public class Volume: PhysicalUnit<Volume>
     {
         public Volume(double value) : base(value) { }
 

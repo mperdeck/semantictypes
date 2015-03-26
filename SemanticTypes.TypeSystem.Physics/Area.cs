@@ -8,7 +8,7 @@ namespace SemanticTypes.MetricTypeSystem
     /// <summary>
     /// Area in square meters 
     /// </summary>
-    public class Area: PhysicalUnit
+    public class Area: PhysicalUnit<Area>
     {
         public Area(double value): base(value) {}
 

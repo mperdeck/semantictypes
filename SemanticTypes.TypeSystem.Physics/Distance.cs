@@ -10,7 +10,7 @@ namespace SemanticTypes.MetricTypeSystem
     /// For conversions, see
     /// http://www.convert-me.com/en/
     /// </summary>
-    public class Distance: PhysicalUnit
+    public class Distance : PhysicalUnit<Distance>
     {
         private const double MilesToMeters = 1609;
         private const double FeetToMeters = 0.3048;
