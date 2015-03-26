@@ -21,12 +21,24 @@ namespace SemanticTypes
             _isValidLambda = isValidLambda;
         }
 
+        //public static implicit operator Q(SemanticDoubleType<Q> d)
+        //{
+        //    return new Digit(d);
+        //}
+
+
         // -----------------------------------------------------------------
         // Binary operator 
 
+        //public static Q operator +(Q b, Q c)
+        //{
+        //    if (EitherNull(b,c)) { return null; }
+        //    return new Q(_isValidLambda, b.Value + c.Value);
+        //}
+
         public static SemanticDoubleType<Q> operator +(SemanticDoubleType<Q> b, SemanticDoubleType<Q> c)
         {
-            if (EitherNull(b,c)) { return null; }
+            if (EitherNull(b, c)) { return null; }
             return new SemanticDoubleType<Q>(_isValidLambda, b.Value + c.Value);
         }
 

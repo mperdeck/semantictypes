@@ -10,19 +10,25 @@ namespace SemanticTypes.MetricTypeSystem
     /// For conversions, see
     /// http://www.convert-me.com/en/
     /// </summary>
-    public class Distance : PhysicalUnit<Distance>
+    public class Distance : SemanticDoubleType<Distance>
+//##############    public class Distance : PhysicalUnit<Distance>
     {
-        private const double MilesToMeters = 1609;
-        private const double FeetToMeters = 0.3048;
-        private const double InchesToMeters = 0.0254;
-
         /// <summary>
         /// Creates a new distance
         /// </summary>
         /// <param name="value">
         /// Distance in meters
         /// </param>
-        public Distance(double value) : base(value) { }
+        public Distance(double value) : base(null, value) { }
+
+        public static implicit operator Distance(IValue<double> d)
+        {
+            return new Distance(d.Value);
+        }
+
+        private const double MilesToMeters = 1609;
+        private const double FeetToMeters = 0.3048;
+        private const double InchesToMeters = 0.0254;
 
         /// <summary>
         /// Creates a new distance.

@@ -5,6 +5,11 @@ using System.Text;
 
 namespace SemanticTypes
 {
+    public interface IValue<T>
+    {
+        T Value { get; }
+    }
+
     /// <summary>
     /// Internal base type of a semantic type. Do not inherit from this directly, it is infrastructure only.
     /// </summary>
@@ -12,7 +17,7 @@ namespace SemanticTypes
     /// Type of the underlying value. If your semantic type is "EmailAddress" with an underlying value of type string,
     /// then pass "string" here.
     /// </typeparam>
-    public abstract class SemanticTypeBase<T> : IEquatable<SemanticTypeBase<T>>
+    public abstract class SemanticTypeBase<T> : IEquatable<SemanticTypeBase<T>>, IValue<T>
     {
         /// <summary>
         /// The Value property allows you to get the underlying value of a semantic type
