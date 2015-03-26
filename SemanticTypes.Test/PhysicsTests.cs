@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SemanticTypes.MetricTypeSystem;
+using SemanticTypes.TypeSystem.Physics;
 
 namespace SemanticTypes.Test
 {
@@ -38,11 +38,12 @@ namespace SemanticTypes.Test
             Distance d = (distance4m + distance6m);
 
             Assert.IsTrue(distance6m == distance4m + distance2m);
+            Assert.IsTrue(6 == (distance4m + distance2m).Meters);
 
-            //Distance distanceMinus2m = (distance4m - distance6m);
-            //Assert.IsTrue(distanceMinus2m.Meters == -2);
-            //Assert.IsTrue(distance2m == distance6m - distance4m);
-            //Assert.IsTrue(distance8m2.Value == 8);
+            Distance distanceMinus2m = (distance4m - distance6m);
+            Assert.IsTrue(distanceMinus2m.Meters == -2);
+            Assert.IsTrue(distance2m == distance6m - distance4m);
+            Assert.IsTrue(distance8m2.Value == 8);
         }
     }
 }

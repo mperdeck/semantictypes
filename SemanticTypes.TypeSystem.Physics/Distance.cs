@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SemanticTypes.MetricTypeSystem
+namespace SemanticTypes.TypeSystem.Physics
 {
     /// <summary>
     /// Encapsulates a distance.

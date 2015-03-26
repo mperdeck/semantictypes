@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SemanticTypes.MetricTypeSystem
+namespace SemanticTypes.TypeSystem.Physics
 {
     /// <summary>
-    /// Area in square meters 
+    /// Represents an area
     /// </summary>
     public class Area : SemanticDoubleType<Area>
     {
+        /// <summary>
+        /// Creates an area
+        /// </summary>
+        /// <param name="value">
+        /// Size in square meters
+        /// </param>
         public Area(double value): base(value) {}
 
         public static Volume operator *(Area b, Distance c)

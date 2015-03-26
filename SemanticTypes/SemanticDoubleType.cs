@@ -28,37 +28,37 @@ namespace SemanticTypes
             return CreateQ(b.Value + c.Value);
         }
 
-        public static SemanticDoubleType<Q> operator -(SemanticDoubleType<Q> b, SemanticDoubleType<Q> c)
+        public static Q operator -(SemanticDoubleType<Q> b, SemanticDoubleType<Q> c)
         {
             if (EitherNull(b, c)) { return null; }
-            return new SemanticDoubleType<Q>(b.Value - c.Value);
+            return CreateQ(b.Value - c.Value);
         }
 
-        public static SemanticDoubleType<Q> operator *(double b, SemanticDoubleType<Q> c)
+        public static Q operator *(double b, SemanticDoubleType<Q> c)
         {
             if (c == null) { return null; }
-            return new SemanticDoubleType<Q>(b * c.Value);
+            return CreateQ(b * c.Value);
         }
 
-        public static SemanticDoubleType<Q> operator *(SemanticDoubleType<Q> c, double b)
+        public static Q operator *(SemanticDoubleType<Q> c, double b)
         {
             if (c == null) { return null; }
-            return new SemanticDoubleType<Q>(b * c.Value);
+            return CreateQ(b * c.Value);
         }
 
-        public static SemanticDoubleType<Q> operator /(SemanticDoubleType<Q> c, double b)
+        public static Q operator /(SemanticDoubleType<Q> c, double b)
         {
             if (c == null) { return null; }
-            return new SemanticDoubleType<Q>(c.Value / b);
+            return CreateQ(c.Value / b);
         }
 
         // -----------------------------------------------------------------
         // Unary operator 
 
-        public static SemanticDoubleType<Q> operator -(SemanticDoubleType<Q> c)
+        public static Q operator -(SemanticDoubleType<Q> c)
         {
             if (c == null) { return null; }
-            return new SemanticDoubleType<Q>(-1 * c.Value);
+            return CreateQ(-1 * c.Value);
         }
 
         // -----------------------------------------------------------------
