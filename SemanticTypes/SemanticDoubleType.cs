@@ -30,17 +30,24 @@ namespace SemanticTypes
         // -----------------------------------------------------------------
         // Binary operator 
 
-        //public static Q operator +(Q b, Q c)
-        //{
-        //    if (EitherNull(b,c)) { return null; }
-        //    return new Q(_isValidLambda, b.Value + c.Value);
-        //}
-
-        public static SemanticDoubleType<Q> operator +(SemanticDoubleType<Q> b, SemanticDoubleType<Q> c)
+        public static Q operator +(SemanticDoubleType<Q> b, SemanticDoubleType<Q> c)
         {
-            if (EitherNull(b, c)) { return null; }
-            return new SemanticDoubleType<Q>(_isValidLambda, b.Value + c.Value);
+          //  if (EitherNull(b, c)) { return null; }
+
+            double x = b.Value + c.Value;
+            object[] args = { x };
+            object result = Activator.CreateInstance(typeof(Q), args);
+            return (Q)result;
+
+
+        //    return new Q(_isValidLambda, b.Value + c.Value);
         }
+
+        //public static SemanticDoubleType<Q> operator +(SemanticDoubleType<Q> b, SemanticDoubleType<Q> c)
+        //{
+        //    if (EitherNull(b, c)) { return null; }
+        //    return new SemanticDoubleType<Q>(_isValidLambda, b.Value + c.Value);
+        //}
 
         public static SemanticDoubleType<Q> operator -(SemanticDoubleType<Q> b, SemanticDoubleType<Q> c)
         {

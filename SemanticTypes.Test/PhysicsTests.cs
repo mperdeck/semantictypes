@@ -35,10 +35,14 @@ namespace SemanticTypes.Test
             Assert.IsTrue(distance2m == distance6m / 3);
             Assert.IsTrue(distance2m == -1* (distance4m - distance6m));
 
-            Distance distanceMinus2m = (distance4m - distance6m);
-            Assert.IsTrue(distanceMinus2m.Meters == -2);
-            Assert.IsTrue(distance2m == distance6m - distance4m);
-            Assert.IsTrue(distance8m2.Value == 8);
+            Distance d = (distance4m + distance6m);
+
+            Assert.IsTrue(distance6m == distance4m + distance2m);
+
+            //Distance distanceMinus2m = (distance4m - distance6m);
+            //Assert.IsTrue(distanceMinus2m.Meters == -2);
+            //Assert.IsTrue(distance2m == distance6m - distance4m);
+            //Assert.IsTrue(distance8m2.Value == 8);
         }
     }
 }
