@@ -8,11 +8,8 @@ namespace SemanticTypes.MetricTypeSystem
 {
     public class PhysicalUnit : SemanticDoubleType<PhysicalUnit>
     {
-        public static bool IsValid(double value)
-        {
-            return (value >= 0);
-        }
-
-        public PhysicalUnit(double value) : base(IsValid, value) { }
+        // Note that physical units can be negative, for convenience sake.
+        // For example, the difference between two distances.
+        public PhysicalUnit(double value) : base(null, value) { }
     }
 }

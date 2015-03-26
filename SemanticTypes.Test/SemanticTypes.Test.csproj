@@ -51,6 +51,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BirthDateTests.cs" />
+    <Compile Include="PhysicsTests.cs" />
     <Compile Include="EmailAddressTests.cs" />
     <Compile Include="IdTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,6 +62,10 @@
     <ProjectReference Include="..\SemanticTypes.Examples\SemanticTypes.Examples.csproj">
       <Project>{c66b0b41-fcc8-40dd-9f36-c3f15777023a}</Project>
       <Name>SemanticTypes.Examples</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SemanticTypes.TypeSystem.Physics\SemanticTypes.TypeSystem.Physics.csproj">
+      <Project>{98a497a7-fcb9-48d7-9fc7-aeb0d34de711}</Project>
+      <Name>SemanticTypes.TypeSystem.Physics</Name>
     </ProjectReference>
     <ProjectReference Include="..\SemanticTypes\SemanticTypes.csproj">
       <Project>{a036bbf1-9cb8-43ef-ae5a-ba03379f6895}</Project>
