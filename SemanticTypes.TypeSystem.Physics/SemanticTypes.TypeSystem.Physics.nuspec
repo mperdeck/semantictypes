@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SemanticTypes.TypeSystem.Physics</id>
-    <version>0.10</version>
+    <version>0.11.0</version>
     <title>SemanticTypes.TypeSystem.Physics - semantic classes that model the physical world</title>
     <authors>Matt Perdeck</authors>
     <owners>Matt Perdeck</owners>
