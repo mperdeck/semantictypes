@@ -21,10 +21,10 @@ namespace SemanticTypes.MetricTypeSystem
         /// </param>
         public Distance(double value) : base(null, value) { }
 
-        public static implicit operator Distance(IValue<double> d)
-        {
-            return new Distance(d.Value);
-        }
+        //public static implicit operator Distance(IValue<double> d)
+        //{
+        //    return new Distance(d.Value);
+        //}
 
         private const double MilesToMeters = 1609;
         private const double FeetToMeters = 0.3048;

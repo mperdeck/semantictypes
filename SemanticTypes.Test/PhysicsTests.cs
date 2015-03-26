@@ -11,17 +11,6 @@ namespace SemanticTypes.Test
     [TestClass]
     public class PhysicsTests
     {
-        public class Distance2 : Distance
-        {
-            public Distance2(double x)
-                : base(x)
-            { }
-
-        }
-
-
-
-
         [TestMethod]
         public void VariousPhysicsTests()
         {
@@ -50,24 +39,6 @@ namespace SemanticTypes.Test
             Assert.IsTrue(distanceMinus2m.Meters == -2);
             Assert.IsTrue(distance2m == distance6m - distance4m);
             Assert.IsTrue(distance8m2.Value == 8);
-
-
-//#####################
-            var y1 = new Distance(2);
-            var y2 = (Distance2)y1;
-
-
-            var x2 = new SemanticDoubleType<Distance>(null, 5);
-            Distance x1 = (Distance)x2;
-            Assert.IsTrue(x1.Value == 5);
-
-
-
-
-
-
-
-
         }
     }
 }
