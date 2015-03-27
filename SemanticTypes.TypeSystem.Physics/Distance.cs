@@ -40,6 +40,15 @@ namespace SemanticTypes.TypeSystem.Physics
         }
 
         /// <summary>
+        /// Returns the distance in meters.
+        /// </summary>
+        /// <returns></returns>
+        public double Meters
+        {
+            get { return Value; }
+        }
+
+        /// <summary>
         /// Creates a new distance
         /// </summary>
         /// <param name="value">
@@ -49,6 +58,15 @@ namespace SemanticTypes.TypeSystem.Physics
         public static Distance FromMiles(double value)
         {
             return new Distance(value * MilesToMeters);
+        }
+
+        /// <summary>
+        /// Returns the distance in miles.
+        /// </summary>
+        /// <returns></returns>
+        public double Miles
+        {
+            get { return Value / MilesToMeters; }
         }
 
         /// <summary>
@@ -64,6 +82,15 @@ namespace SemanticTypes.TypeSystem.Physics
         }
 
         /// <summary>
+        /// Returns the distance in feet.
+        /// </summary>
+        /// <returns></returns>
+        public double Feet
+        {
+            get { return Value / FeetToMeters; }
+        }
+
+        /// <summary>
         /// Creates a new distance
         /// </summary>
         /// <param name="value">
@@ -76,39 +103,32 @@ namespace SemanticTypes.TypeSystem.Physics
         }
 
         /// <summary>
-        /// Returns the distance in meters.
-        /// </summary>
-        /// <returns></returns>
-        public double Meters
-        {
-            get { return Value; }
-        }
-
-        /// <summary>
-        /// Returns the distance in miles.
-        /// </summary>
-        /// <returns></returns>
-        public double Miles
-        {
-            get { return Value / MilesToMeters; }
-        }
-
-        /// <summary>
-        /// Returns the distance in feet.
-        /// </summary>
-        /// <returns></returns>
-        public double Feet
-        {
-            get { return Value / FeetToMeters; }
-        }
-
-        /// <summary>
         /// Returns the distance in inches.
         /// </summary>
         /// <returns></returns>
         public double Inches
         {
             get { return Value / InchesToMeters; }
+        }
+
+        /// <summary>
+        /// Creates a new distance, based on combination of feet and inches
+        /// </summary>
+        /// <returns></returns>
+        public static Distance FromImperial(double feet, double inches)
+        {
+            return FromInches((12 * feet) + inches);
+        }
+
+        /// <summary>
+        /// Returns the distance in a combination of feet and inches.
+        /// </summary>
+        /// <returns></returns>
+        public void ToImperial(out double feet, out double inches)
+        {
+            double totalInches = Inches;
+            feet = Math.Floor(totalInches / 12);
+            inches = totalInches % 12;
         }
 
         public static Area operator *(Distance b, Distance c)

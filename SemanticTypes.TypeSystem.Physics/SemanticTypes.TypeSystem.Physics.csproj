@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Area.cs" />
+    <Compile Include="Weight.cs" />
+    <Compile Include="Energy.cs" />
     <Compile Include="Distance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Volume.cs" />
