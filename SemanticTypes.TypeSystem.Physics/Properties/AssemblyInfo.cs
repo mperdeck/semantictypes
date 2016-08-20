@@ -34,3 +34,8 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
+// Get the compiler to create a strong named assembly, using the key pair in this file.
+// Note that they key file gets checked into Github, as per
+// http://stackoverflow.com/questions/36141302/why-is-it-recommended-to-include-the-private-key-used-for-assembly-signing-in-op
+[assembly: AssemblyKeyFileAttribute("../semantictypes.strongname.snk")]
