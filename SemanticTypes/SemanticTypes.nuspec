@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SemanticTypes</id>
-    <version>0.12.0</version>
+    <version>1.0.1</version>
     <title>SemanticTypes - base classes to quickly create semantic types for your domain</title>
     <authors>Matt Perdeck</authors>
     <owners>Matt Perdeck</owners>
@@ -10,9 +10,12 @@
       <iconUrl>http://nuget.org/Media/Default/Packages/LinqToCsv/1.0.0.0/logo.jpg</iconUrl>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Defining email addresses, distances, phone numbers, etc. as separate semantic types lets you use the C# or VB type system to catch bugs during compilation.</description>
-    <copyright>Copyright 2014</copyright>
+    <copyright>Copyright 2016</copyright>
     <tags>ddd value types semantic types</tags>
     <dependencies>
     </dependencies>
   </metadata>
+  <files>
+    <file src="bin\Release\SemanticTypes.*" target="lib\net35\" />
+  </files>
 </package>
