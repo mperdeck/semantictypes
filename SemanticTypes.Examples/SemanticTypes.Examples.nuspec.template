@@ -10,10 +10,13 @@
       <iconUrl>http://nuget.org/Media/Default/Packages/LinqToCsv/1.0.0.0/logo.jpg</iconUrl>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Examples of semantic classes, including EmailAddress, BirthDate and Amount.</description>
-    <copyright>Copyright 2014</copyright>
+    <copyright>Copyright 2016</copyright>
     <tags>ddd value types semantic types email amount currency</tags>
       <dependencies>
-          <dependency id="SemanticTypes" />
+          <dependency id="SemanticTypes" version="__Version__" />
       </dependencies>
   </metadata>
+  <files>
+    <file src="bin\Release\SemanticTypes.Examples.*" target="lib\net35\" />
+  </files>
 </package>
