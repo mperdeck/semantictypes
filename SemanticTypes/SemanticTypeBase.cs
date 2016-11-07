@@ -71,7 +71,7 @@ namespace SemanticTypes
             return Value.GetHashCode();
         }
 
-        public bool Equals(SemanticTypeBase<T> other)
+        public virtual bool Equals(SemanticTypeBase<T> other)
         {
             if (other == null) { return false; }
             
