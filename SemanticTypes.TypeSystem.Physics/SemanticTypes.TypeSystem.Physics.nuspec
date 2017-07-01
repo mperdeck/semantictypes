@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SemanticTypes.TypeSystem.Physics</id>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <title>SemanticTypes.TypeSystem.Physics - semantic classes that model the physical world</title>
     <authors>Matt Perdeck</authors>
     <owners>Matt Perdeck</owners>
@@ -13,10 +13,10 @@
     <copyright>Copyright 2016</copyright>
     <tags>ddd value types semantic types physics</tags>
       <dependencies>
-          <dependency id="SemanticTypes" version="1.0.1" />
+          <dependency id="SemanticTypes" version="1.1.0" />
       </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\SemanticTypes.TypeSystem.Physics.*" target="lib\net35\" />
+    <file src="bin\Release\SemanticTypes.TypeSystem.Physics.*" target="lib\net462\" />
   </files>
 </package>
