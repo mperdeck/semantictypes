@@ -2,9 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 
 namespace SemanticTypes
 {
+    public interface ISemanticType
+    {
+        object GetValue();
+    }
     public interface IValue<T>
     {
         T Value { get; }
@@ -17,7 +24,7 @@ namespace SemanticTypes
     /// Type of the underlying value. If your semantic type is "EmailAddress" with an underlying value of type string,
     /// then pass "string" here.
     /// </typeparam>
-    public abstract class SemanticTypeBase<T> : IEquatable<SemanticTypeBase<T>>, IValue<T>
+    public abstract class SemanticTypeBase<T> : IEquatable<SemanticTypeBase<T>>, IValue<T>, ISemanticType, IXmlSerializable
     {
         /// <summary>
         /// The Value property allows you to get the underlying value of a semantic type
@@ -67,10 +74,10 @@ namespace SemanticTypes
             return Value.GetHashCode();
         }
 
-        public bool Equals(SemanticTypeBase<T> other)
+        public virtual bool Equals(SemanticTypeBase<T> other)
         {
             if (other == null) { return false; }
-            
+
             return (Value.Equals(other.Value));
         }
 
@@ -84,7 +91,7 @@ namespace SemanticTypes
 
             // If one is null, but not both, return false.
             // Have to cast to object, otherwise you recursively call this == operator.
-            if (EitherNull(a, b)) 
+            if (EitherNull(a, b))
             {
                 return false;
             }
@@ -111,7 +118,75 @@ namespace SemanticTypes
         {
             return this.Value.ToString();
         }
+
+        public object GetValue()
+        {
+            return this.Value;
+        }
+
+        public XmlSchema GetSchema()
+        {
+            return null;
+        }
+
+        public void ReadXml(XmlReader reader)
+        {
+            reader.MoveToContent();
+            if (typeof(T) == typeof(byte[]))
+            {
+                var buffer = Convert.FromBase64String(reader.ReadElementContentAsString());
+                Value = (T)(object)buffer;
+            }
+            else if (typeof(T) == typeof(UInt16)
+                 || typeof(T) == typeof(Int16)
+                || typeof(T) == typeof(int)
+                || typeof(T) == typeof(byte)
+                || typeof(T) == typeof(sbyte))
+            {
+                Value = (T)(object)reader.ReadElementContentAsInt();
+            }
+            else if (typeof(T) == typeof(UInt32))
+            {
+                Value = (T)(object)(UInt32)reader.ReadElementContentAsLong();
+            }
+            else if (typeof(T) == typeof(Int64))
+            {
+                Value = (T)(object)reader.ReadElementContentAsLong();
+            }
+            else
+            {
+                throw new NotImplementedException($"Write of {typeof(T)}");
+            }
+
+        }
+
+        public void WriteXml(XmlWriter writer)
+        {
+            if (typeof(T) == typeof(byte[]))
+            {
+                var buffer = (byte[])(object)Value;
+                writer.WriteBase64(buffer, 0, buffer.Length);
+            }
+            else if (typeof(T) == typeof(UInt16)
+                 || typeof(T) == typeof(Int16)
+                || typeof(T) == typeof(int)
+                || typeof(T) == typeof(byte)
+                || typeof(T) == typeof(sbyte))
+            {
+                writer.WriteValue((int)(object)Value);
+            }
+            else if (typeof(T) == typeof(UInt32))
+            {
+                writer.WriteValue((long)(UInt32)(object)Value);
+            }
+            else if (typeof(T) == typeof(Int64))
+            {
+                writer.WriteValue((long)(object)Value);
+            }
+            else
+            {
+                throw new NotImplementedException($"Write of {typeof(T)}");
+            }
+        }
     }
-
-
 }
