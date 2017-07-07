@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -39,3 +40,4 @@ using System.Runtime.InteropServices;
 // Note that they key file gets checked into Github, as per
 // http://stackoverflow.com/questions/36141302/why-is-it-recommended-to-include-the-private-key-used-for-assembly-signing-in-op
 [assembly: AssemblyKeyFileAttribute("../semantictypes.strongname.snk")]
+[assembly: CLSCompliant(true)]
